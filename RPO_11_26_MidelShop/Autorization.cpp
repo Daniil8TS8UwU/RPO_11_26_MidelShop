@@ -10,7 +10,8 @@ void Start()
 		{
 			if (currentStatus == L"SuperAdmin")
 			{
-				//0w0
+				CreateStorage();
+				SuperAdminMenu();
 			}
 			else if (currentStatus == L"Admin")
 			{
@@ -66,8 +67,71 @@ bool Login()
 					return true;
 				}
 			}
-			std::wcout << L"\n\tНеверный логин или пароль. Повторите попытку\n\n";
+			std::wcout << L"\n\t= Неверный логин или пароль! Повторите попытку =\n\n";
 			Sleep(2000);
 		}	
+	}
+}
+
+void SuperAdminMenu()
+{
+	std::wstring choose;
+
+	while (true)
+	{
+		system("cls");
+
+		std::wcout << L"\n1 -- Начать продажу";
+		std::wcout << L"\n2 -- Показать склад";
+		std::wcout << L"\n3 -- Пополнить товары";
+		std::wcout << L"\n4 -- Списать товар";
+		std::wcout << L"\n5 -- Изменить цены";
+		std::wcout << L"\n6 -- Редактировать склад";
+		std::wcout << L"\n7 -- Редактировать сотрудников";
+		std::wcout << L"\n8 -- Показать прибыль";
+		std::wcout << L"\n0 -- ";
+		std::wcout << L"\nВвод: ";
+		Getline(choose);
+		
+		if (choose == L"1")
+		{
+
+		}
+		else if (choose == L"2")
+		{
+			ShowStorage;
+		}
+		else if (choose == L"3")
+		{
+
+		}
+		else if (choose == L"4")
+		{
+
+		}
+		else if (choose == L"5")
+		{
+
+		}
+		else if (choose == L"6")
+		{
+
+		}
+		else if (choose == L"7")
+		{
+
+		}
+		else if (choose == L"8")
+		{
+
+		}
+		else if (choose == L"0")
+		{
+
+		}
+		else
+		{
+			Error();
+		}
 	}
 }

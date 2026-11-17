@@ -12,6 +12,18 @@ int main()
 
 
 	Start();
+	delete[]loginArr;
+	delete[]passArr;
+	delete[]startusArr;
+	delete[]userIdArr;
+
+	if (isStoregeCreated)
+	{
+		delete[]idArr;
+		delete[]nameArr;
+		delete[]countArr;
+		delete[]priceArr;
+	}
 
 	return 0;
 }

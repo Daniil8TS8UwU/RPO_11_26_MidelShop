@@ -10,7 +10,13 @@ extern std::wstring* nameArr;
 extern size_t* countArr;
 extern double* priceArr;
 
+extern bool isStoregeCreated;
+extern size_t maxStorageSize;
+extern size_t currentStorageSize;
+
 void CreateStorage(int mode = 0);
+void ShowStorage(int mode = 0);
+void AddProduct();
 
 
 #endif // !_STORAGE_HPP_
