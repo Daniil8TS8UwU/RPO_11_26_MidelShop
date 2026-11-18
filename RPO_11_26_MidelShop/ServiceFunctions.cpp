@@ -15,12 +15,14 @@ bool IsNumber(const std::wstring& str)
 
 	for (size_t i = 0; i < str.size(); i++)
 	{
-		if (std::isdigit(str[i]))
+		if (!std::isdigit(str[i]))
 		{
-			std::wcout << L"Введенные двнные не являются числом\n\n";
+			std::wcout << L"Введенные данные не являются числом\n\n";
 			Sleep(1500);
 			return false;
 		}
 	}
 	return false;
 }
+
+//ДОДЕЛАТЬ

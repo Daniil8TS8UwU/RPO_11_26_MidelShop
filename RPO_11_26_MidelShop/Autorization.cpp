@@ -81,16 +81,18 @@ void SuperAdminMenu()
 	{
 		system("cls");
 
-		std::wcout << L"\n1 -- Начать продажу";
-		std::wcout << L"\n2 -- Показать склад";
-		std::wcout << L"\n3 -- Пополнить товары";
-		std::wcout << L"\n4 -- Списать товар";
-		std::wcout << L"\n5 -- Изменить цены";
-		std::wcout << L"\n6 -- Редактировать склад";
-		std::wcout << L"\n7 -- Редактировать сотрудников";
-		std::wcout << L"\n8 -- Показать прибыль";
-		std::wcout << L"\n0 -- ";
-		std::wcout << L"\nВвод: ";
+		std::wcout << L"\n\n\t\t -= { ТВОРЧЕСКАЯ СТУДИЯ } =- " //доделать
+
+		std::wcout << L"\n\n\t1 -- Начать продажу";
+		std::wcout << L"\n\t2 -- Показать склад";
+		std::wcout << L"\n\t3 -- Пополнить товары";
+		std::wcout << L"\n\t4 -- Списать товар";
+		std::wcout << L"\n\t5 -- Изменить цены";
+		std::wcout << L"\n\t6 -- Редактировать склад";
+		std::wcout << L"\n\t7 -- Редактировать сотрудников";
+		std::wcout << L"\n\t8 -- Показать прибыль";
+		std::wcout << L"\n\t0 -- Выход";
+		std::wcout << L"\n\n\tВвод: ";
 		Getline(choose);
 		
 		if (choose == L"1")
@@ -99,19 +101,19 @@ void SuperAdminMenu()
 		}
 		else if (choose == L"2")
 		{
-			ShowStorage;
+			ShowStorage();
 		}
 		else if (choose == L"3")
 		{
-
+			AddProduct();
 		}
 		else if (choose == L"4")
 		{
-
+			RemoveProduct();
 		}
 		else if (choose == L"5")
 		{
-
+			ChangerPrise();
 		}
 		else if (choose == L"6")
 		{

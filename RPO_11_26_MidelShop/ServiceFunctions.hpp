@@ -8,6 +8,7 @@
 
 void Getline(std::wstring& str);
 bool IsNumber(const std::wstring& str);
+bool IsNotSameName(const std::wstring& chooseName); //ДОДЕЛАТЬ
 
 __forceinline void Error()
 {

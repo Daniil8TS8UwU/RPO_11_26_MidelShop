@@ -7,9 +7,10 @@ size_t* countArr = nullptr;
 double* priceArr = nullptr;
 
 bool isStoregeCreated = false;
-size_t maxStorageSize = 2000;
-size_t currentStorageSize = 0;
 
+size_t maxStorageSize = 500;
+size_t currentStorageSize = 0;
+double maxPrice = 100000;
 
 void CreateStorage(int mode)
 {
@@ -28,7 +29,7 @@ void CreateStorage(int mode)
 			L"Ручки шариковые \"Камета\"", L"Карандаши \"Камета\"",
 		};
 		//Доделать!!!
-		size_t countArrStatic[staticSize]{ 331,332,333,341,342,343,25,52,31,4,17,4012,4060,245,10,20 };
+		size_t countArrStatic[staticSize]{ 9,7,7,6,4,5,5,5,3,4,13,8,15,10,35,25 };
 		double priceArrStatic[staticSize]{ 219.5,220.0,219.5,745.3,750.6,745.3,1250.9,934.3,405.8,24.9,450.2,2300.4,700.8,650.3,44.9,35.0 };
 
 		sizeSt = staticSize;
@@ -68,12 +69,12 @@ void ShowStorage(int mode)
 		system("cls");
 		std::wcout << L"\n\n\n\t\t\t= Склад товаров для рукоделия =\n\n\n";
 
-		std::wcout << L"ID\t" << std::left << std::setw(40) << L"Название товара\t\t"
+		std::wcout << L"ID\t" << std::left << std::setw(70) << L"Название товара\t\t"
 			<< L"Кол-во\t" << L"Цена\n\n";
 		for (size_t i = 0; i < sizeSt; i++)
 		{
-			std::wcout << idArr[i] << L"\t" << std::left << std::setw(40) << nameArr[i]
-				<< L"\t" << countArr[i] << L"\t" << priceArr[i] << L"\n";
+			std::wcout << idArr[i] << L"\t" << std::fixed << std::left << std::setw(70) << nameArr[i]
+				<< L"\t" << countArr[i] << L"\t" << std::setprecision(2) << priceArr[i] << L"\n";
 		}
 
 		std::wcout << L"\n\n";
@@ -82,18 +83,40 @@ void ShowStorage(int mode)
 	else if (mode == 1)
 	{
 		system("cls");
-		std::wcout << L"\n\n\t\t\t= Пополнение склада =\n\n\n";
+		std::wcout << L"\n\n\t\t\t= Пополнение товаров склада =\n\n\n";
 
 		for (size_t i = 0; i < sizeSt; i++)
 		{
-			std::wcout << idArr[i] << L"\t" << std::left << std::setw(40) << nameArr[i]
+			std::wcout << idArr[i] << L"\t" << std::left << std::setw(70) << nameArr[i]
 				<< L"\t" << countArr[i] << L"\t" << priceArr[i] << L"\n";
 		}
 
 		std::wcout << L"\n\n";
 
-		std::wcout << L"Заполненность склада: " << currentStorageSize << L" из "
+		std::wcout << L"\n\nЗаполненность склада: " << currentStorageSize << L" из "
 			<< maxStorageSize << L"\n\n";
+	}
+	else if (mode == 2)
+	{
+		system("cls");
+		std::wcout << L"\n\n\t\t\t= Cписание товаров склада =\n\n\n";
+
+		for (size_t i = 0; i < sizeSt; i++)
+		{
+			std::wcout << idArr[i] << L"\t" << std::left << std::setw(70) << nameArr[i]
+				<< L"\t" << countArr[i] << L"\t" << priceArr[i] << L"\n";
+		}
+
+		std::wcout << L"\n\n";
+
+		std::wcout << L"\n\nЗаполненность склада: " << currentStorageSize << L" из "
+			<< maxStorageSize << L"\n\n";
+	}
+	else if (mode == 3)
+	{
+		system("cls");
+
+		std::wcout << L"\n\n\t\t\t= И";
 	}
 }
 
@@ -110,7 +133,78 @@ void AddProduct()
 		Getline(chooseId);
 		if (chooseId == L"exit" || chooseId == L"Exit")
 		{
-			std::wcout << L"Завершение операции попонения товара\n\n";
+			std::wcout << L"\n\nЗавершение операции попонения товара ";
+			Sleep(1600);
+			return;
+		}
+		else if (IsNumber(chooseId))
+		{
+			id = std::stoi(chooseId) - 1;
+			if (id < 0 || id > sizeSt - 1)
+			{
+				Error();
+			}
+			else
+			{
+				std::wcout << L"\n\n Введите количество товара для пополнения -- ";
+				Getline(chooseCount);
+				if (IsNumber(chooseCount))
+				{
+					count = std::stoull(chooseCount);
+					if (count > maxStorageSize - currentStorageSize || count < 0)
+					{
+						std::wcout << L"\n\nНекорретное количество! На складе осталось "
+							<< maxStorageSize - currentStorageSize << L"";
+					}
+					else
+					{
+						while (true)
+						{
+							system("cls");
+							std::wcout << nameArr[id] << L"\t" << countArr[id] << L"---->"
+								<< countArr[id] + count << L"\n\n";
+							std::wcout << L"\n\nПодтвердить?\n1 - Да\n2 - Нет\n\nВвод -- ";
+							Getline(choose);
+
+							if (choose == L"1")
+							{
+								std::wcout << L"\n\nТовар успешно пополнен\n\n";
+								countArr[id] += count;
+								currentStorageSize += count;
+								Sleep(1500);
+							}
+							else if (choose == L"2")
+							{
+								std::wcout << L"\n\nОтмена пополнения " << nameArr[id] << L"\n";
+								Sleep(1500);
+								break;
+							}
+							else
+							{
+								Error();
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+void RemoveProduct()
+{
+	std::wstring chooseId, chooseCount, choose;
+	int id = 0;
+	size_t count = 0;
+
+	while (true)
+	{
+		ShowStorage(2);
+		std::wcout << L"\n\n= Введите ID товара или \"exit\" для выхода -- ";
+		Getline(chooseId);
+		if (chooseId == L"exit" || chooseId == L"Exit")
+		{
+			std::wcout << L"\n\nЗавершение операции списания товара ";
 			Sleep(1600);
 			return;
 		}
@@ -123,15 +217,150 @@ void AddProduct()
 			}
 			else
 			{
-				std::wcout << L"Введите количество товара для пополнения -- ";
+				std::wcout << L"\n\n Введите количество товара для списания -- ";
 				Getline(chooseCount);
 				if (IsNumber(chooseCount))
 				{
 					count = std::stoull(chooseCount);
-					// проверить есть ли куда положить товар ЗАКОНЧИТЬ
+					if (count < 0 || count > countArr[id])
+					{
+						std::wcout << L"\n\nНекорретное количество! На складе осталось "
+							<< maxStorageSize - currentStorageSize << L"";
+					}
+					else
+					{
+						while (true) 
+						{
+							system("cls");
+							std::wcout << nameArr[id] << L"\t" << countArr[id] << L"---->"
+								<< countArr[id] + count << L"\n\n";
+							std::wcout << L"\n\nПодтвердить?\n1 - Да\n2 - Нет\n\nВвод -- ";
+							Getline(choose);
+
+							if (choose == L"1")
+							{
+								std::wcout << L"\n\nТовар успешно списан\n\n";
+								countArr[id] -= count;
+								currentStorageSize -= count;
+								Sleep(1500);
+							}
+							else if (choose == L"2")
+							{
+								std::wcout << L"\n\nОтмена пополнения " << nameArr[id] << L"\n";
+								Sleep(1500);
+								break;
+							}
+							else
+							{
+								Error();
+							}
+						}
+					}
 				}
 			}
 		}
 	}
 }
+
+void ChangerPrise()
+{
+	std::wstring chooseId, chooseCount, choose;
+	int id = 0;
+	size_t count = 0;
+
+	while (true)
+	{
+		ShowStorage(2);
+		std::wcout << L"\n\nВведите ID товара или \"exit\" для выхода: ";
+		Getline(chooseId);
+		if (chooseId == L"exit" || chooseId == L"Exit")
+		{
+			std::wcout << L"\n\nЗавершение операции списания товара";
+			Sleep(1600);
+			return;
+		}
+		else if (IsNumber(chooseId))
+		{
+			id = std::stoi(chooseId); // ДОДЕЛАТЬ!!
+		}
+	}
+}
+
+void ChangerStorage()
+{
+	std::wstring choose;
+
+	while (true)
+	{
+		system("cls");
+
+		std::wcout << L"1";
+		std::wcout << L"1";
+		std::wcout << L"1";
+		std::wcout << L"1";
+		std::wcout << L"1";
+		std::wcout << L"1";
+		Getline(choose);
+
+		if (choose == L"1")
+		{
+
+		}
+		else if
+		{
+
+		}
+		else if
+		{
+
+		}
+		else if
+		{
+
+		}
+		else
+		{
+
+		}
+	}
+}
+
+void AddNewProduct()
+{
+	std::wstring chooseName, choose;
+
+	while (true)
+	{
+		while (true)
+		{
+			system("cls");
+
+			std::wcout << L"Введите название нового товара или \"exit\" для выхода: ";
+			Getline(chooseName);
+			if (chooseName == L"exit" || chooseName == L"Exit")
+			{
+				std::wcout << "Отмена создания нового товара";
+				Sleep(1500);
+				return;
+			}
+			if (chooseName.size() < 3)
+		} //ДОДЕЛАТЬ
+
+		while (true)
+		{
+			system("cls");
+
+			std::wcout << L"Введите колличество нового товара или ..." //ДОДЕЛАТЬ
+		}
+
+		//ДОПОЛНИТЬ И СКОПИРОВАТЬ
+
+		system("cls");
+
+
+
+	}
+}
+
+
 
