@@ -20,9 +20,10 @@ void CreateStorage(int mode = 0);
 void ShowStorage(int mode = 0);
 void AddProduct();
 void RemoveProduct();
-void ChangerPrise();
-
+void ChangePrice();
 void ChangeStorage();
 void AddNewProduct();
+void ChangeProductName();
+void DeleteProduct();
 
 #endif // !_STORAGE_HPP_
