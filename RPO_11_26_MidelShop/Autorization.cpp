@@ -81,7 +81,7 @@ void SuperAdminMenu()
 	{
 		system("cls");
 
-		std::wcout << L"\n\n\t\t -= { ТВОРЧЕСКАЯ СТУДИЯ } =- " //доделать
+		std::wcout << L"\n\n\t\t -= { ТВОРЧЕСКАЯ СТУДИЯ } =- "; //доделать
 
 		std::wcout << L"\n\n\t1 -- Начать продажу";
 		std::wcout << L"\n\t2 -- Показать склад";
@@ -113,23 +113,23 @@ void SuperAdminMenu()
 		}
 		else if (choose == L"5")
 		{
-			ChangerPrise();
+			ChangePrice();
 		}
 		else if (choose == L"6")
 		{
-
+			ChangeStorage();
 		}
 		else if (choose == L"7")
 		{
-
+			AddNewProduct();
 		}
 		else if (choose == L"8")
 		{
-
+			ChangeProductName();
 		}
 		else if (choose == L"0")
 		{
-
+			DeleteProduct();
 		}
 		else
 		{
