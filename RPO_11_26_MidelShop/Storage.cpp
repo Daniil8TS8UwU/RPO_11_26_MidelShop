@@ -537,6 +537,7 @@ void ChangeProductName()
 	}
 
 }
+
 void DeleteProduct()
 {
 	std::wstring chooseId, pass;
@@ -584,8 +585,12 @@ void DeleteProduct()
 						idArr[i] = i + 1;
 					}
 					// Доделать
-					std::wcout << L"\n\nТовар успешно удален\n";
+					std::wcout << L"\n\n\t= Товар успешно удален =\n";
 					Sleep(1500);
+					if (sizeSt < 1)
+					{
+						std::wcout << L"\n\n\t= Cклад пустой =";
+					}
 					continue;
 				}
 				else
@@ -599,4 +604,10 @@ void DeleteProduct()
 
 
 	}
+}
+
+void ChangeStoregeLimits()
+{
+	std::wcout << L"\n\nВ процесе\n\n";
+	Sleep(1500);
 }

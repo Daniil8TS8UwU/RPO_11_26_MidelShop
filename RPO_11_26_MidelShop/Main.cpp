@@ -12,6 +12,7 @@ int main()
 
 
 	Start();
+
 	delete[]loginArr;
 	delete[]passArr;
 	delete[]startusArr;

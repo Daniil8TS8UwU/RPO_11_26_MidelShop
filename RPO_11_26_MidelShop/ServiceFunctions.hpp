@@ -5,6 +5,8 @@
 #include <string>
 #include <iostream>
 #include <iomanip>
+#include <cwctype>
+#include <unordered_set>
 
 void Getline(std::wstring& str);
 bool IsNumber(const std::wstring& str);
@@ -25,6 +27,7 @@ void FillArray(ArrType* dynamicArr, ArrType* staticArr, size_t commonSize)
 		dynamicArr[i] = staticArr[i];
 	}
 }
+
 bool isNotSameName(const std::wstring& chooseName, std::wstring* nameArr, size_t commonSize);
 template <class ArrType>
 void ArrPushBack(ArrType*& arr, size_t arrSize)
